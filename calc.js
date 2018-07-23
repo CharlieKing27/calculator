@@ -81,7 +81,7 @@ class demo extends Component {
 					this.setState({ question:'', answer:'', operator:'' });
 					break;
 				}
-				default:{
+				default:{ //operator was pressed
 					if(this.state.question===''){
 						const ans = this.state.answer;
 						this.setState({ question:'', answer:ans, operator:value });
@@ -94,7 +94,7 @@ class demo extends Component {
 				}
 			}
 		}
-		else{
+		else{ //number was pressed
 			this.setState({ question: this.state.question += value})
 		}
 	}
