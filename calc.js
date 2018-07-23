@@ -3,20 +3,21 @@ import './demo.css';
 import Screen from './screen';
 import Button from './buttons';
 
-
 class demo extends Component {
 	constructor() {
 		super();
 		this.state = {
 			question: '',
 			answer: '',
+			operator: ''
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
+	
 	render() {
 		return (
 			<div id='demo'>
-				<Screen question={this.state.question} answer={this.state.answer} />
+				<Screen question={this.state.question} answer={this.state.answer} operator={this.state.operator}/>
 				<table id='button-table'><tbody>
 					<tr>
 						<Button label='7' handleClick={this.handleClick} type='input' />
@@ -43,6 +44,33 @@ class demo extends Component {
 			</div>
 		);
 	}
+
+	handleClick(event){
+		const value = event.target.id;
+		if(event.target.className==='button action-button'){
+			switch(value) {
+				case '=':{
+					switch(this.state.operator){
+              
+					}
+					break;
+				}
+				case 'C':{
+					this.setState({ question:'', answer:'', operator:'' });
+					break;
+				}
+				default:{ //operator was pressed
+					const ans = this.state.question;
+					this.setState({ question:'', answer:ans, operator:value });
+					break;
+				}
+			}
+		}
+		else{ //number was pressed
+			this.setState({ question: this.state.question += value})
+		}
+	}
+  
 }
 
 export default demo;
