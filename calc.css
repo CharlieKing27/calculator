@@ -1,22 +1,57 @@
-body{
+#demo{
 	background-color:#000;
 	font-size:32px;
-}
-#demo{
-	width:16em;
-	height:16em;
+	font-family:'Monospace', monospace;
+	width:10em;
+	height:14em;
 	color:#fff;
 	border:0.05em solid #fff;
 	padding:2em;
 	margin:2em;
 }
+#demo #screen .screen-row{
+	background-color:#888;
+	border:0.05em solid #fff;
+	width:9.25em;
+	text-align:center;
+	padding:0.1em;
+}
+#demo #screen .screen-row input{
+	background-color:#888;
+	width:8em;
+	margin:0;
+	border:none;
+	text-align:right;
+	font-size:inherit;
+	font-family:inherit;
+	font-weight:inherit;
+}
 #demo #button-table{
 	border-spacing:0.5em;
 }
-#demo #button-table td{
+#demo #button-table .button{
 	text-align:center;
 	width:1.5em;
 	height:1.5em;
 	border:0.1em solid #fff;
 	border-radius:0.2em;
+	cursor:pointer;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+#demo #button-table .action-button{
+	background-color:#333;
+}
+
+#demo #error-log{
+	width:18.5em;
+	padding:0.2em;
+	margin-top:1em;
+	text-align:left;
+	font-size:16px;
 }
