@@ -3,6 +3,7 @@ import './demo.css';
 import Screen from './screen';
 import Button from './buttons';
 
+
 class demo extends Component {
 	constructor() {
 		super();
@@ -50,31 +51,7 @@ class demo extends Component {
 		if(event.target.className==='button action-button'){
 			switch(value) {
 				case '=':{
-					switch(this.state.operator){
-						case '+':{
-							const ans = parseInt(this.state.answer) + parseInt(this.state.question);
-							this.setState({ question:'', answer:ans.toString(), operator:'' });
-							break;
-						}
-						case '-':{
-							const ans = parseInt(this.state.answer) - parseInt(this.state.question);
-							this.setState({ question:'', answer:ans.toString(), operator:'' });
-							break;
-						}
-						case 'x':{
-							const ans = parseInt(this.state.answer) * parseInt(this.state.question);
-							this.setState({ question:'', answer:ans.toString(), operator:'' });
-							break;
-						}
-						case '/':{
-							const ans = Math.round(10000000000*parseInt(this.state.answer) / parseInt(this.state.question))/10000000000;
-							this.setState({ question:'', answer:ans.toString(), operator:'' });
-							break;
-						}
-						default:{
-							break;
-						}
-					}
+					this.setState({ question:'', answer:evalExpression(this.state.question, this.state.answer, this.state.operator), operator:'' });
 					break;
 				}
 				case 'C':{
@@ -82,8 +59,19 @@ class demo extends Component {
 					break;
 				}
 				default:{ //operator was pressed
-					const ans = this.state.question;
-					this.setState({ question:'', answer:ans, operator:value });
+					if(this.state.question===''){
+						const ans = this.state.answer;
+						this.setState({ question:'', answer:ans, operator:value });
+					}
+					else{
+						if(this.state.answer===''){
+							const ans = this.state.question;
+							this.setState({ question:'', answer:ans, operator:value });
+						}
+						else if(this.state.operator!==''){
+							this.setState({ question:'', answer:evalExpression(this.state.question, this.state.answer, this.state.operator), operator:value });
+						}
+					}
 					break;
 				}
 			}
@@ -94,5 +82,32 @@ class demo extends Component {
 	}
   
 }
-
 export default demo;
+
+
+function evalExpression(q, a, o){
+	var result;
+	switch(o){
+		case '+':{
+			result = parseInt(a) + parseInt(q);
+			break;
+		}
+		case '-':{
+			result = parseInt(a) - parseInt(q);
+			break;
+		}
+		case 'x':{
+			result = parseInt(a) * parseInt(q);
+			break;
+		}
+		case '/':{
+			result = Math.round(10000000000*parseInt(a) / parseInt(q))/10000000000;
+			break;
+		}
+		default:{
+			result = 'ERR';
+			break;
+		}
+	}
+	return(result.toString());
+}
