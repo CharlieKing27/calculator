@@ -1,0 +1,22 @@
+body{
+	background-color:#000;
+	font-size:32px;
+}
+#demo{
+	width:16em;
+	height:16em;
+	color:#fff;
+	border:0.05em solid #fff;
+	padding:2em;
+	margin:2em;
+}
+#demo #button-table{
+	border-spacing:0.5em;
+}
+#demo #button-table td{
+	text-align:center;
+	width:1.5em;
+	height:1.5em;
+	border:0.1em solid #fff;
+	border-radius:0.2em;
+}
