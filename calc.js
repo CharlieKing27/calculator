@@ -51,7 +51,29 @@ class demo extends Component {
 			switch(value) {
 				case '=':{
 					switch(this.state.operator){
-              
+						case '+':{
+							const ans = parseInt(this.state.answer) + parseInt(this.state.question);
+							this.setState({ question:'', answer:ans.toString(), operator:'' });
+							break;
+						}
+						case '-':{
+							const ans = parseInt(this.state.answer) - parseInt(this.state.question);
+							this.setState({ question:'', answer:ans.toString(), operator:'' });
+							break;
+						}
+						case 'x':{
+							const ans = parseInt(this.state.answer) * parseInt(this.state.question);
+							this.setState({ question:'', answer:ans.toString(), operator:'' });
+							break;
+						}
+						case '/':{
+							const ans = Math.round(10000000000*parseInt(this.state.answer) / parseInt(this.state.question))/10000000000;
+							this.setState({ question:'', answer:ans.toString(), operator:'' });
+							break;
+						}
+						default:{
+							break;
+						}
 					}
 					break;
 				}
