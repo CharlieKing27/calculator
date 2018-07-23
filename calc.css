@@ -1,6 +1,7 @@
 body{
 	background-color:#000;
 	font-size:32px;
+	font-family:'Monospace', monospace;
 }
 #demo{
 	width:16em;
@@ -9,6 +10,23 @@ body{
 	border:0.05em solid #fff;
 	padding:2em;
 	margin:2em;
+}
+#demo .screen .screen-row{
+	background-color:#888;
+	border:0.05em solid #fff;
+	width:9.25em;
+	text-align:center;
+	padding:0.1em;
+}
+#demo .screen .screen-row input{
+	background-color:#888;
+	width:8em;
+	margin:0;
+	border:none;
+	text-align:right;
+	font-size:inherit;
+	font-family:inherit;
+	font-weight:inherit;
 }
 #demo #button-table{
 	border-spacing:0.5em;
@@ -19,4 +37,18 @@ body{
 	height:1.5em;
 	border:0.1em solid #fff;
 	border-radius:0.2em;
+}
+#demo #button-table td.button{
+	cursor:pointer;
+}
+#demo #button-table td.action-button{
+	background-color:#333;
+}
+
+#demo #error-log{
+	width:18.5em;
+	padding:0.2em;
+	margin-top:1em;
+	text-align:left;
+	font-size:16px;
 }
