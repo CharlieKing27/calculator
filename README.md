@@ -1,4 +1,4 @@
-# calculator
+# Calculator
 Simple calculator tool made with React
 
 Notes:
