@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './demo.css';
+import './calc.css';
 import Screen from './screen';
 import Button from './buttons';
 
@@ -11,6 +11,7 @@ class demo extends Component {
 			question: '',
 			answer: '',
 			operator: '',
+			key: '',
 			error: ''
 		}
 		this.handleClick = this.handleClick.bind(this);
@@ -82,7 +83,7 @@ class demo extends Component {
 			}
 		}
 		else{ //number was pressed
-			if(this.state.question.length>12){
+			if(this.state.question.length>=12){
 				this.setState({ error:'Input is limited to 12 digits' });
 			}
 			else{
@@ -94,25 +95,34 @@ class demo extends Component {
 }
 export default demo;
 
-
 function evalExpression(q, a, o){
 	var result = [];
+	if(q===''){q='0';}
 	switch(o){
 		case '+':{
-			result[0] = (parseInt(a) + parseInt(q)).toString();
+			result[0] = (parseFloat(a) + parseFloat(q)).toString();
 			break;
 		}
 		case '-':{
-			result[0] = (parseInt(a) - parseInt(q)).toString();
+			result[0] = (parseFloat(a) - parseFloat(q)).toString();
 			break;
 		}
 		case '×':{
-			result[0] = (parseInt(a) * parseInt(q)).toString();
+			result[0] = (parseFloat(a) * parseFloat(q)).toString();
 			break;
 		}
 		case '/':{
-			const digits = Math.round(parseInt(a) / parseInt(q)).toString().length;
-			result[0] = (Math.round((10^(10-digits))*parseInt(a) / parseInt(q))/(10^(10-digits))).toString();
+			if(q==='0'){
+				result[0] = a;
+				result[1] = 'Error: division by zero';
+			}
+			else{ //rounding
+				const digits = Math.round(parseFloat(a) / parseFloat(q)).toString().length;
+				result[0] = (Math.round( (Math.pow(10, 11-digits))*parseFloat(a) / parseFloat(q) )/( Math.pow(10, 11-digits) )).toString();
+				if(result[0]!==(parseFloat(a)/parseFloat(q)).toString()){
+					result[1] = 'Number was rounded';
+				}
+			}
 			break;
 		}
 		default:{
