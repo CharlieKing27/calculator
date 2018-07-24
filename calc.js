@@ -130,7 +130,7 @@ function evalExpression(q, a, o){
 			break;
 		}
 	}
-	if(result[0].toString().length>12){
+	if(parseFloat(result[0]) > 999999999999){
 		result[1] = 'Error: result is '+result[0].toString()+', which is too large to display. Results are limited to 12 digits.';
 		result[0] = '999999999999';
 	}
